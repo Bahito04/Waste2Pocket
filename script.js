@@ -135,6 +135,8 @@ closeSell.addEventListener("click", function() {
 });
 
 // Submit listing
+
+// Submit listing
 sellForm.addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -143,39 +145,53 @@ sellForm.addEventListener("submit", function(event) {
     let quantity = document.getElementById("materialQuantity").value;
     let location = document.getElementById("materialLocation").value;
 
-    // Create a new product card
-    let newProduct = document.createElement("div");
+    // Create a product object
+    let newProduct = {
+        name: name,
+        category: category,
+        quantity: quantity,
+        location: location
+    };
 
-    newProduct.classList.add("product-card");
-    newProduct.dataset.category = category;
+    // Save the listing in our array
+    savedProducts.push(newProduct);
 
-    newProduct.innerHTML = `
-        <div class="product-image">♻️</div>
-        <h3></h3>
-        <p></p>
-        <p></p>
-        <button>View Details</button>
-    `;
+    // Store the updated array in the browser
+    localStorage.setItem("wasteListings", JSON.stringify(savedProducts));
 
-    newProduct.querySelector("h3").textContent = name;
+    // Display the new product
+    createProductCard(newProduct);
 
-    let productDetails = newProduct.querySelectorAll("p");
-
-    productDetails[0].textContent = "Quantity: " + quantity + " kg";
-    productDetails[1].textContent = "Location: " + location;
-
-    // Add card to marketplace
-    productContainer.appendChild(newProduct);
-    console.log("New product added:", newProduct);
-
-console.log("Total products:", document.querySelectorAll(".product-card").length);
-
-    // Update search and category filtering
+    // Apply current search and category filters
     filterProducts();
 
-    // Reset and close form
+    // Reset and close the form
     sellForm.reset();
     sellPopup.style.display = "none";
 
-    alert("Your listing has been added to the marketplace!");
+    alert("Your listing has been saved successfully!");
+});
+
+// Sidebar Navigation
+
+const marketplaceLink = document.getElementById("marketplaceLink");
+const purchasesLink = document.getElementById("purchasesLink");
+
+const marketplaceSection = document.getElementById("marketplaceSection");
+const purchasesSection = document.getElementById("purchasesSection");
+
+// Open Marketplace
+marketplaceLink.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    marketplaceSection.style.display = "block";
+    purchasesSection.style.display = "none";
+});
+
+// Open My Purchases
+purchasesLink.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    marketplaceSection.style.display = "none";
+    purchasesSection.style.display = "block";
 });
