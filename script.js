@@ -58,3 +58,42 @@ categoryButtons.forEach(function(button) {
     });
 
 });
+
+
+const viewButtons = document.querySelectorAll(".product-card button");
+
+const detailsPopup = document.getElementById("detailsPopup");
+
+const closePopup = document.getElementById("closePopup");
+
+const closeButton = document.getElementById("closeButton");
+
+viewButtons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        let product = button.parentElement;
+
+        let name = product.querySelector("h3").textContent;
+
+        let details = product.querySelectorAll("p");
+
+        document.getElementById("detailName").textContent = name;
+
+        document.getElementById("detailQuantity").textContent = details[0].textContent;
+
+        document.getElementById("detailLocation").textContent = details[1].textContent;
+
+        detailsPopup.style.display = "flex";
+
+    });
+
+});
+
+closePopup.addEventListener("click", function() {
+    detailsPopup.style.display = "none";
+});
+
+closeButton.addEventListener("click", function() {
+    detailsPopup.style.display = "none";
+});
