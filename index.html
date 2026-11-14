@@ -142,6 +142,48 @@
 
 </div>
 
+<!-- Collections Section -->
+<div class="collections-section" id="collectionsSection"
+     style="display: none;">
+
+    <h1>Collection Requests</h1>
+
+    <p>Request pickup of recyclable materials from your location.</p>
+
+    <form id="collectionForm">
+
+        <label>Material Type</label>
+        <select id="collectionMaterial" required>
+            <option value="">Choose material</option>
+            <option value="Plastic">Plastic</option>
+            <option value="Paper">Paper</option>
+            <option value="Metal">Metal</option>
+            <option value="Glass">Glass</option>
+        </select>
+
+        <label>Quantity (kg)</label>
+        <input type="number" id="collectionQuantity"
+               min="1" placeholder="e.g. 20" required>
+
+        <label>Pickup Location</label>
+        <input type="text" id="collectionLocation"
+               placeholder="e.g. Brikama" required>
+
+        <label>Preferred Collection Date</label>
+        <input type="date" id="collectionDate" required>
+
+        <button type="submit">Request Collection</button>
+
+    </form>
+
+    <h2>My Collection Requests</h2>
+
+    <div id="collectionRequests">
+        <p>You haven't made any collection requests yet.</p>
+    </div>
+
+</div>
+
 </main>
 
 
