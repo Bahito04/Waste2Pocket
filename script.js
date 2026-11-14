@@ -1,3 +1,5 @@
+// Get previously saved purchases
+let savedPurchases = JSON.parse(localStorage.getItem("myPurchases")) || [];
 
 const searchInput = document.querySelector(".search-section input");
 const categoryButtons = document.querySelectorAll(".categories button");
@@ -93,9 +95,11 @@ const closePopup = document.getElementById("closePopup");
 const closeButton = document.getElementById("closeButton");
 
 // Listen for clicks on all product cards, including new ones
+
 productContainer.addEventListener("click", function(event) {
 
-    if (event.target.matches(".product-card button")) {
+    // View Details button
+    if (event.target.matches(".product-card button:not(.buy-button)")) {
 
         let product = event.target.parentElement;
 
@@ -108,7 +112,34 @@ productContainer.addEventListener("click", function(event) {
 
         detailsPopup.style.display = "flex";
     }
+
+    // Buy button
+    else if (event.target.matches(".buy-button")) {
+
+        let product = event.target.parentElement;
+
+        let name = product.querySelector("h3").textContent;
+        let details = product.querySelectorAll("p");
+
+        let newPurchase = {
+            name: name,
+            quantity: details[0].textContent.replace("Quantity: ", "").replace(" kg", ""),
+            location: details[1].textContent.replace("Location: ", "")
+        };
+
+        // Save purchase
+        savedPurchases.push(newPurchase);
+
+        localStorage.setItem("myPurchases", JSON.stringify(savedPurchases));
+
+        // Update My Purchases
+        displayPurchases();
+
+        alert("Product added to My Purchases!");
+    }
+
 });
+
 
 // Close details popup
 closePopup.addEventListener("click", function() {
@@ -196,3 +227,47 @@ purchasesLink.addEventListener("click", function(event) {
     marketplaceSection.style.display = "none";
     purchasesSection.style.display = "block";
 });
+
+// Display My Purchases
+function displayPurchases() {
+
+    const purchasesContainer = document.getElementById("purchasesContainer");
+
+    purchasesContainer.innerHTML = "";
+
+    if (savedPurchases.length === 0) {
+        purchasesContainer.innerHTML =
+            "<p>You haven't purchased anything yet.</p>";
+        return;
+    }
+
+    savedPurchases.forEach(function(product) {
+
+        let purchaseCard = document.createElement("div");
+
+        purchaseCard.classList.add("product-card");
+
+        let name = document.createElement("h3");
+        name.textContent = product.name;
+
+        let quantity = document.createElement("p");
+        quantity.textContent = "Quantity: " + product.quantity + " kg";
+
+        let location = document.createElement("p");
+        location.textContent = "Location: " + product.location;
+
+        let status = document.createElement("p");
+        status.textContent = "Status: Purchased";
+
+        purchaseCard.appendChild(name);
+        purchaseCard.appendChild(quantity);
+        purchaseCard.appendChild(location);
+        purchaseCard.appendChild(status);
+
+        purchasesContainer.appendChild(purchaseCard);
+
+    });
+}
+
+// Display saved purchases when the page loads
+displayPurchases();
