@@ -324,3 +324,63 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
+.collections-section h1 {
+    color: #145c3b;
+    margin-bottom: 10px;
+}
+
+.collections-section > p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+#collectionForm {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 600px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+#collectionForm label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+#collectionForm input,
+#collectionForm select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+#collectionForm button {
+    background: #145c3b;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+#collectionForm button:hover {
+    background: #0e472d;
+}
+
+.collections-section h2 {
+    color: #145c3b;
+    margin-top: 35px;
+    margin-bottom: 15px;
+}
+
+#collectionRequests {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
