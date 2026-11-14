@@ -211,6 +211,8 @@ const purchasesLink = document.getElementById("purchasesLink");
 
 const marketplaceSection = document.getElementById("marketplaceSection");
 const purchasesSection = document.getElementById("purchasesSection");
+const impactLink = document.getElementById("impactLink");
+const impactSection = document.getElementById("impactSection");
 
 // Open Marketplace
 marketplaceLink.addEventListener("click", function(event) {
@@ -218,6 +220,7 @@ marketplaceLink.addEventListener("click", function(event) {
 
     marketplaceSection.style.display = "block";
     purchasesSection.style.display = "none";
+    impactSection.style.display = "none";
 });
 
 // Open My Purchases
@@ -226,6 +229,18 @@ purchasesLink.addEventListener("click", function(event) {
 
     marketplaceSection.style.display = "none";
     purchasesSection.style.display = "block";
+    impactSection.style.display = "none";
+});
+
+// Open My Impact
+impactLink.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    marketplaceSection.style.display = "none";
+    purchasesSection.style.display = "none";
+    impactSection.style.display = "block";
+
+    updateImpact();
 });
 
 // Display My Purchases
@@ -271,3 +286,57 @@ function displayPurchases() {
 
 // Display saved purchases when the page loads
 displayPurchases();
+
+
+// My Impact Dashboard
+function updateImpact() {
+
+    let totalPurchases = savedPurchases.length;
+    let totalWeight = 0;
+    let categories = {};
+
+    savedPurchases.forEach(function(product) {
+
+        totalWeight += Number(product.quantity) || 0;
+
+        let category = product.category || "Other";
+
+        if (categories[category]) {
+            categories[category]++;
+        } else {
+            categories[category] = 1;
+        }
+
+    });
+
+    // Update summary cards
+    document.getElementById("totalPurchases").textContent = totalPurchases;
+
+    document.getElementById("totalWeight").textContent = totalWeight + " kg";
+
+    document.getElementById("materialTypes").textContent =
+        Object.keys(categories).length;
+
+    // Display category breakdown
+    let breakdown = document.getElementById("impactBreakdown");
+
+    breakdown.innerHTML = "";
+
+    if (totalPurchases === 0) {
+        breakdown.textContent = "You haven't purchased any materials yet.";
+        return;
+    }
+
+    for (let category in categories) {
+
+        let item = document.createElement("p");
+
+        item.textContent = category + ": " + categories[category] + " purchase(s)";
+
+        breakdown.appendChild(item);
+
+    }
+}
+
+// Calculate impact when the page loads
+updateImpact();
