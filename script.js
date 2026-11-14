@@ -289,6 +289,17 @@ const marketplaceSection = document.getElementById("marketplaceSection");
 const purchasesSection = document.getElementById("purchasesSection");
 const impactSection = document.getElementById("impactSection");
 const collectionsSection = document.getElementById("collectionsSection");
+
+function setActiveLink(activeLink) {
+
+    const sidebarLinks = document.querySelectorAll(".sidebar a");
+
+    sidebarLinks.forEach(function(link) {
+        link.classList.remove("active");
+    });
+
+    activeLink.classList.add("active");
+}
 // Open Marketplace
 marketplaceLink.addEventListener("click", function(event) {
     event.preventDefault();
