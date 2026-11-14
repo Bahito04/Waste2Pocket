@@ -108,7 +108,35 @@
     </div>
 
 </div>
+<!-- Sell Waste Popup -->
+<div class="sell-popup" id="sellPopup">
+    <div class="sell-popup-content">
 
+        <span class="close-sell" id="closeSell">&times;</span>
+
+        <h2>Sell Your Waste</h2>
+        <p>List recyclable materials you want to sell.</p>
+
+        <form id="sellForm">
+
+            <label>Material Name</label>
+            <input type="text" id="materialName"
+                   placeholder="e.g. Plastic Bottles" required>
+
+            <label>Quantity (kg)</label>
+            <input type="number" id="materialQuantity"
+                   placeholder="e.g. 20" required>
+
+            <label>Location</label>
+            <input type="text" id="materialLocation"
+                   placeholder="e.g. Brikama" required>
+
+            <button type="submit">Submit Listing</button>
+
+        </form>
+
+    </div>
+</div>
     
 <script src="script.js"></script>
 </body>

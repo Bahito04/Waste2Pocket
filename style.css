@@ -48,7 +48,7 @@ body {
 
 .main-content h1 {
     color: #145c3b;
-    margin-bottom: 10px;
+    margin-bottom: 100px;
 }
 
 
@@ -206,5 +206,68 @@ body {
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Sell Waste Popup */
+.sell-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.sell-popup-content {
+    background: white;
+    padding: 30px;
+    width: 350px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.sell-popup-content h2 {
+    color: #145c3b;
+    margin-bottom: 10px;
+}
+
+.sell-popup-content p {
+    margin-bottom: 20px;
+}
+
+.sell-popup-content label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.sell-popup-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.sell-popup-content button {
+    width: 100%;
+    background: #145c3b;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-sell {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 25px;
     cursor: pointer;
 }
