@@ -97,3 +97,33 @@ closePopup.addEventListener("click", function() {
 closeButton.addEventListener("click", function() {
     detailsPopup.style.display = "none";
 });
+
+// Sell Waste Popup
+const sellButton = document.querySelector(".sell-button");
+const sellPopup = document.getElementById("sellPopup");
+const closeSell = document.getElementById("closeSell");
+const sellForm = document.getElementById("sellForm");
+
+// Open the form
+sellButton.addEventListener("click", function() {
+    sellPopup.style.display = "flex";
+});
+
+// Close the form
+closeSell.addEventListener("click", function() {
+    sellPopup.style.display = "none";
+});
+
+// Submit the form
+sellForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("materialName").value;
+    let quantity = document.getElementById("materialQuantity").value;
+    let location = document.getElementById("materialLocation").value;
+
+    alert("Your listing has been submitted successfully!");
+
+    sellForm.reset();
+    sellPopup.style.display = "none";
+});
