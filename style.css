@@ -40,6 +40,27 @@ body {
     text-decoration: none;
 }
 
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+/* When the mouse moves over a link */
+.sidebar a:hover {
+    background-color: #1e754c;
+}
+
+/* The currently selected page */
+.sidebar a.active {
+    background-color: #ffffff;
+    color: #145c3b;
+    font-weight: bold;
+}
+
 /* Main content */
 .main-content {
     flex: 1;
