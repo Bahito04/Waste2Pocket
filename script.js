@@ -1,5 +1,79 @@
 // Get previously saved purchases
 let savedPurchases = JSON.parse(localStorage.getItem("myPurchases")) || [];
+let savedCollections = JSON.parse(localStorage.getItem("myCollections")) || [];
+
+function displayCollections() {
+
+    const collectionRequests = document.getElementById("collectionRequests");
+
+    collectionRequests.innerHTML = "";
+
+    if (savedCollections.length === 0) {
+        collectionRequests.innerHTML =
+            "<p>You haven't made any collection requests yet.</p>";
+        return;
+    }
+
+    savedCollections.forEach(function(collection) {
+
+        let collectionCard = document.createElement("div");
+        collectionCard.classList.add("product-card");
+
+        let material = document.createElement("h3");
+        material.textContent = collection.material;
+
+        let quantity = document.createElement("p");
+        quantity.textContent = "Quantity: " + collection.quantity + " kg";
+
+        let location = document.createElement("p");
+        location.textContent = "Location: " + collection.location;
+
+        let date = document.createElement("p");
+        date.textContent = "Collection Date: " + collection.date;
+
+        let status = document.createElement("p");
+        status.textContent = "Status: Request Submitted";
+
+        collectionCard.appendChild(material);
+        collectionCard.appendChild(quantity);
+        collectionCard.appendChild(location);
+        collectionCard.appendChild(date);
+        collectionCard.appendChild(status);
+
+        collectionRequests.appendChild(collectionCard);
+
+    });
+}
+
+displayCollections();
+const collectionForm = document.getElementById("collectionForm");
+
+collectionForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    let material = document.getElementById("collectionMaterial").value;
+    let quantity = document.getElementById("collectionQuantity").value;
+    let location = document.getElementById("collectionLocation").value;
+    let date = document.getElementById("collectionDate").value;
+
+    let newCollection = {
+        material: material,
+        quantity: quantity,
+        location: location,
+        date: date
+    };
+
+    savedCollections.push(newCollection);
+
+    localStorage.setItem("myCollections", JSON.stringify(savedCollections));
+
+    displayCollections();
+
+    collectionForm.reset();
+
+    alert("Your collection request has been submitted!");
+});
 
 const searchInput = document.querySelector(".search-section input");
 const categoryButtons = document.querySelectorAll(".categories button");
