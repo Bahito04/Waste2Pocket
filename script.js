@@ -282,12 +282,13 @@ sellForm.addEventListener("submit", function(event) {
 
 const marketplaceLink = document.getElementById("marketplaceLink");
 const purchasesLink = document.getElementById("purchasesLink");
+const impactLink = document.getElementById("impactLink");
+const collectionsLink = document.getElementById("collectionsLink");
 
 const marketplaceSection = document.getElementById("marketplaceSection");
 const purchasesSection = document.getElementById("purchasesSection");
-const impactLink = document.getElementById("impactLink");
 const impactSection = document.getElementById("impactSection");
-
+const collectionsSection = document.getElementById("collectionsSection");
 // Open Marketplace
 marketplaceLink.addEventListener("click", function(event) {
     event.preventDefault();
@@ -315,6 +316,14 @@ impactLink.addEventListener("click", function(event) {
     impactSection.style.display = "block";
 
     updateImpact();
+});
+collectionsLink.addEventListener("click", function() {
+
+    marketplaceSection.style.display = "none";
+    purchasesSection.style.display = "none";
+    impactSection.style.display = "none";
+    collectionsSection.style.display = "block";
+
 });
 
 // Display My Purchases
