@@ -20,7 +20,8 @@ function createProductCard(product) {
         <h3></h3>
         <p></p>
         <p></p>
-        <button>View Details</button>
+       <button>View Details</button>
+<button class="buy-button">Buy</button>
     `;
 
     newProduct.querySelector("h3").textContent = product.name;
