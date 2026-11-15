@@ -83,6 +83,7 @@ let selectedCategory = "all";
 // Get previously saved listings from the browser
 let savedProducts = JSON.parse(localStorage.getItem("wasteListings")) || [];
 
+
 // Function to create a product card
 function createProductCard(product) {
 
@@ -91,13 +92,22 @@ function createProductCard(product) {
     newProduct.classList.add("product-card");
     newProduct.dataset.category = product.category;
 
+    // Choose an image based on the product
+    let productImage = "imgs/images (1).jpg";
+
+    if (product.name.toLowerCase().includes("mixed")) {
+        productImage = "imgs/images (2).jpg";
+    }
+
     newProduct.innerHTML = `
-        <div class="product-image">♻️</div>
+        <div class="product-image">
+            <img src="${productImage}" alt="${product.name}">
+        </div>
         <h3></h3>
         <p></p>
         <p></p>
-       <button>View Details</button>
-<button class="buy-button">Buy</button>
+        <button>View Details</button>
+        <button class="buy-button">Buy</button>
     `;
 
     newProduct.querySelector("h3").textContent = product.name;
@@ -109,6 +119,7 @@ function createProductCard(product) {
 
     productContainer.appendChild(newProduct);
 }
+
 
 // Display previously saved listings
 savedProducts.forEach(function(product) {
